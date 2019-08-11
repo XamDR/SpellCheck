@@ -1,6 +1,6 @@
 # SpellCheck
 Managed wrapper for the Microsoft Spell Checking API available in Windows 8 and Windows Server 2012 and later.
-
+```
 static void Main(string[] args)
 {
     Console.Write("Write a misspelled word: ");
@@ -20,3 +20,4 @@ private static void ShowSuggestions(string word)
         }
     }
 }
+```
