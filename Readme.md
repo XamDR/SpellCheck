@@ -1,18 +1,22 @@
 # SpellCheck
 Managed wrapper for the Microsoft Spell Checking API available in Windows 8 and Windows Server 2012 and later.
 
-https://www.nuget.org/packages/PlatformSpellCheck
+static void Main(string[] args)
+{
+    Console.Write("Write a misspelled word: ");
+    var word = Console.ReadLine();
+    Console.WriteLine("\nSuggestions:\n");
+    ShowSuggestions(word);
+    Console.ReadKey(true);
+}
 
-    var spelling = new NativeSpellChecker();
-    
-    foreach (var mistake in spelling.Check("speelling"))
+private static void ShowSuggestions(string word)
+{
+    using (var spellChecker = new SpellChecker())
     {
-      Console.WriteLine("Start: {0} Length: {1}", mistake.StartIndex, mistake.Length):
+        foreach (var suggestion in spellChecker.Suggestions(word))
+        {
+            Console.WriteLine(suggestion);
+        }
     }
-    
-    foreach (var word in spelling.Suggestions("speelling"))
-    {
-      Console.WriteLine(word):
-    }
-  
-    spelling.Dispose();
+}
